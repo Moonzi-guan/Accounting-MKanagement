@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gcf.zhangwuguanli.mapper.NewinMapper" >
+  <resultMap id="BaseResultMap" type="cn.gcf.zhangwuguanli.pojo.Newin" >
+    <id column="nid" property="nid" jdbcType="INTEGER" />
+    <result column="nusername" property="nusername" jdbcType="VARCHAR" />
+    <result column="nsex" property="nsex" jdbcType="INTEGER" />
+    <result column="napplicant" property="napplicant" jdbcType="VARCHAR" />
+    <result column="ncontact" property="ncontact" jdbcType="VARCHAR" />
+    <result column="nedu" property="nedu" jdbcType="VARCHAR" />
+    <result column="nprofession" property="nprofession" jdbcType="VARCHAR" />
+    <result column="nschool" property="nschool" jdbcType="VARCHAR" />
+    <result column="nmanning" property="nmanning" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    nid, nusername, nsex, napplicant, ncontact, nedu, nprofession, nschool, nmanning
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.gcf.zhangwuguanli.pojo.NewinExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from newin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from newin
+    where nid = #{nid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from newin
+    where nid = #{nid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.gcf.zhangwuguanli.pojo.NewinExample" >
+    delete from newin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.gcf.zhangwuguanli.pojo.Newin" >
+    insert into newin (nid, nusername, nsex, 
+      napplicant, ncontact, nedu, 
+      nprofession, nschool, nmanning
+      )
+    values (#{nid,jdbcType=INTEGER}, #{nusername,jdbcType=VARCHAR}, #{nsex,jdbcType=INTEGER}, 
+      #{napplicant,jdbcType=VARCHAR}, #{ncontact,jdbcType=VARCHAR}, #{nedu,jdbcType=VARCHAR}, 
+      #{nprofession,jdbcType=VARCHAR}, #{nschool,jdbcType=VARCHAR}, #{nmanning,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.gcf.zhangwuguanli.pojo.Newin" >
+    insert into newin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nid != null" >
+        nid,
+      </if>
+      <if test="nusername != null" >
+        nusername,
+      </if>
+      <if test="nsex != null" >
+        nsex,
+      </if>
+      <if test="napplicant != null" >
+        napplicant,
+      </if>
+      <if test="ncontact != null" >
+        ncontact,
+      </if>
+      <if test="nedu != null" >
+        nedu,
+      </if>
+      <if test="nprofession != null" >
+        nprofession,
+      </if>
+      <if test="nschool != null" >
+        nschool,
+      </if>
+      <if test="nmanning != null" >
+        nmanning,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nid != null" >
+        #{nid,jdbcType=INTEGER},
+      </if>
+      <if test="nusername != null" >
+        #{nusername,jdbcType=VARCHAR},
+      </if>
+      <if test="nsex != null" >
+        #{nsex,jdbcType=INTEGER},
+      </if>
+      <if test="napplicant != null" >
+        #{napplicant,jdbcType=VARCHAR},
+      </if>
+      <if test="ncontact != null" >
+        #{ncontact,jdbcType=VARCHAR},
+      </if>
+      <if test="nedu != null" >
+        #{nedu,jdbcType=VARCHAR},
+      </if>
+      <if test="nprofession != null" >
+        #{nprofession,jdbcType=VARCHAR},
+      </if>
+      <if test="nschool != null" >
+        #{nschool,jdbcType=VARCHAR},
+      </if>
+      <if test="nmanning != null" >
+        #{nmanning,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.gcf.zhangwuguanli.pojo.NewinExample" resultType="java.lang.Integer" >
+    select count(*) from newin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update newin
+    <set >
+      <if test="record.nid != null" >
+        nid = #{record.nid,jdbcType=INTEGER},
+      </if>
+      <if test="record.nusername != null" >
+        nusername = #{record.nusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nsex != null" >
+        nsex = #{record.nsex,jdbcType=INTEGER},
+      </if>
+      <if test="record.napplicant != null" >
+        napplicant = #{record.napplicant,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ncontact != null" >
+        ncontact = #{record.ncontact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nedu != null" >
+        nedu = #{record.nedu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nprofession != null" >
+        nprofession = #{record.nprofession,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nschool != null" >
+        nschool = #{record.nschool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nmanning != null" >
+        nmanning = #{record.nmanning,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update newin
+    set nid = #{record.nid,jdbcType=INTEGER},
+      nusername = #{record.nusername,jdbcType=VARCHAR},
+      nsex = #{record.nsex,jdbcType=INTEGER},
+      napplicant = #{record.napplicant,jdbcType=VARCHAR},
+      ncontact = #{record.ncontact,jdbcType=VARCHAR},
+      nedu = #{record.nedu,jdbcType=VARCHAR},
+      nprofession = #{record.nprofession,jdbcType=VARCHAR},
+      nschool = #{record.nschool,jdbcType=VARCHAR},
+      nmanning = #{record.nmanning,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gcf.zhangwuguanli.pojo.Newin" >
+    update newin
+    <set >
+      <if test="nusername != null" >
+        nusername = #{nusername,jdbcType=VARCHAR},
+      </if>
+      <if test="nsex != null" >
+        nsex = #{nsex,jdbcType=INTEGER},
+      </if>
+      <if test="napplicant != null" >
+        napplicant = #{napplicant,jdbcType=VARCHAR},
+      </if>
+      <if test="ncontact != null" >
+        ncontact = #{ncontact,jdbcType=VARCHAR},
+      </if>
+      <if test="nedu != null" >
+        nedu = #{nedu,jdbcType=VARCHAR},
+      </if>
+      <if test="nprofession != null" >
+        nprofession = #{nprofession,jdbcType=VARCHAR},
+      </if>
+      <if test="nschool != null" >
+        nschool = #{nschool,jdbcType=VARCHAR},
+      </if>
+      <if test="nmanning != null" >
+        nmanning = #{nmanning,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where nid = #{nid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gcf.zhangwuguanli.pojo.Newin" >
+    update newin
+    set nusername = #{nusername,jdbcType=VARCHAR},
+      nsex = #{nsex,jdbcType=INTEGER},
+      napplicant = #{napplicant,jdbcType=VARCHAR},
+      ncontact = #{ncontact,jdbcType=VARCHAR},
+      nedu = #{nedu,jdbcType=VARCHAR},
+      nprofession = #{nprofession,jdbcType=VARCHAR},
+      nschool = #{nschool,jdbcType=VARCHAR},
+      nmanning = #{nmanning,jdbcType=VARCHAR}
+    where nid = #{nid,jdbcType=INTEGER}
+  </update>
+  
+  <!--分页查询数据，根据limit和page进行分页-->
+    <select id="queryData" parameterType="Map" resultType="cn.gcf.zhangwuguanli.pojo.Newin">
+        SELECT nid,nusername,nsex,napplicant,ncontact,nedu,nprofession,nschool,nmanning
+        FROM  newin
+        <if test="page!=null and limit!=null">
+            limit #{page},#{limit}
+        </if>
+    </select>
+
+
+    <!--查询记录总数-->
+    <select id="queryCount"  resultType="java.lang.Long">
+        SELECT count(*) FROM  newin
+    </select>
+    
+   
+    
+</mapper>
